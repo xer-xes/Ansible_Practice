@@ -1,0 +1,31 @@
+---
+
+- hosts: all
+  pre_tasks:
+  - name: install updates (RedHat)
+    tags: always
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "RedHat"
+
+- hosts: web_servers
+  tasks:
+  - name: install apache & php package
+    tags: apache,httpd,redhat
+    dnf:
+      name:
+        - httpd.aarch64
+        - php.aarch64
+      state: latest
+      update_cache: true
+    when: ansible_distribution == "RedHat"
+
+- hosts: db_servers
+  tasks:
+  - name: install mariadb (RedHat)
+    tags: redhat,db,mariadb
+    dnf:
+      name: mariadb
+      state: latest
+    when: ansible_distribution == "RedHat"

@@ -1,2 +1,5 @@
-192.168.178.29 apache_package=httpd.aarch64 php_package=php.aarch64
-192.168.178.23 apache_package=httpd.aarch64 php_package=php.aarch64
+[web_servers]
+192.168.178.29
+
+[db_servers]
+192.168.178.23

@@ -3,9 +3,10 @@
 - hosts: all
   tasks:
   - name: install apache & php package
-    package:
+    dnf:
       name:
-        - "{{ apache_package }}"
-        - "{{ php_package  }}"
+        - httpd.aarch64
+        - php.aarch64
       state: latest
       update_cache: true
+    when: ansible_distribution == "RedHat"
