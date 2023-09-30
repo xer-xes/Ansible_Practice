@@ -21,6 +21,15 @@
       update_cache: true
     when: ansible_distribution == "RedHat"
 
+  - name: copy default html file to site
+    tags: apache, httpd
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+
 - hosts: db_servers
   tasks:
   - name: install mariadb (RedHat)
